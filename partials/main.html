@@ -1,0 +1,25 @@
+<div class="container main">
+  <div class="playlist-nav">
+    <div class="title-search">
+      <p id="main-title">YOUR PLAYLISTS</p>
+      <div class="searchbox">
+        <div class="inner-addon left-addon">
+          <i class="fa fa-search"></i>
+          <input type="text" ng-model="query" ng-change="loadsearch()" ng-keyup="loadsearch()" placeholder="Search Playlists (bad)" />
+        </div>
+      </div>
+    </div>
+    <div class="view-ops">
+    </div>
+  </div>
+  <div class="playlists">
+    <div class="pl-item" ng-repeat="pl in playlists track by pl.id" ng-class="getClass('/users/{{pl.username}}/playlists/{{pl.id}}')" >
+      <a ng-href="#/users/{{pl.username}}/playlists/{{pl.id}}">
+         <!-- NOTE: not sure why pl.image['url'] accesses the url and not pl.image[0]['url'] but the latter throws an error (cannot access) -->
+        <img class="playlist-cover" ng-if="pl.image" src="{{pl.image['url']}}" alt="Playlist Cover Image" >
+        <br>
+        <p class="title-caption">{{pl.name}}</p>
+      </a>
+    </div>
+  </div>
+</div>

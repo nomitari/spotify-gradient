@@ -1,0 +1,75 @@
+<html ng-app="PlayerApp">
+	<!--<script type="module" src="rgbaster/dist/rgbaster.js"></script>-->
+	<head>
+		<title>Spotify Gradient</title>
+		<script src="bower_components/angular/angular.js"></script>
+		<script src="bower_components/angular-route/angular-route.js"></script>
+		<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.0.1/color-thief.min.js"></script>-->
+		<script src="bower_components/color-thief/src/color-thief.js"></script>
+		<script src="bower_components/ngColorThief/angular-colorthief.js"></script>
+		<link rel="stylesheet" href="style.css" />
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+		<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+		<script src="app.js"></script>
+		<script src="services/auth.js"></script>
+		<script src="services/api.js"></script>
+		<script src="services/playback.js"></script>
+		<script src="services/playqueue.js"></script>
+		<script src="directives/playlistcover.js"></script>
+		<script src="directives/responsivecover.js"></script>
+		<script src="directives/contextmenu.js"></script>
+		<script src="directives/focusme.js"></script>
+		<script src="filters/displaytime.js"></script>
+		<script src="filters/timeago.js"></script>
+		<script src="controllers/player.js"></script>
+		<script src="controllers/login.js"></script>
+		<script src="controllers/playlist.js"></script>
+		<script src="controllers/home.js"></script>
+		<script src="controllers/artist.js"></script>
+		<script src="controllers/album.js"></script>
+		<script src="controllers/user.js"></script>
+		<script src="controllers/usertracks.js"></script>
+		<script src="controllers/playqueue.js"></script>
+		<script src="controllers/searchresults.js"></script>
+		<script src="controllers/main.js"></script>
+		<script src="controllers/browsecategory.js"></script>
+	</head>
+	<body class="body" ng-controller="AppController">
+		<div class="centered" ng-show="showplayer">
+			<div ng-controller="PlayerController">
+				<header class="header-group">
+					<div class="welcome">
+						<a href="#/home">Hi, {{displayName}}.</a>
+					</div>
+					<div class="profile-nav">
+						<a class="button button-dark nav-button" ng-href="#/users/{{profileUsername}}">{{profileUsername}}</a>
+						<a ng-click="logout()" class="button button-light nav-button" id="logout-button">Log out</a>
+					</div>
+				</header>
+				<div class="mainview">
+					<div ng-view></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="fullview loginview" ng-show="showlogin">
+			<div ng-controller="LoginController">
+				<div class="centered container">
+					<div class="inner">
+						<h1>Spotify Gradient</h1>
+						<br>
+						<p>
+							Where album art and music collide. Connect with Spotify to begin.
+						</p>
+						<br>
+						<button ng-click="login()" class="button-dark" id="login-button">log in</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+

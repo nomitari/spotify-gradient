@@ -1,0 +1,74 @@
+<div class="container" id="playlist-title">{{name}}</div>
+<div class="playlist-display container">
+	<div class="pl-overview">
+		<img class="playlist-img" src="{{image['url']}}" alt="Playlist Cover Image">
+		<div class="playlist-meta">
+			<p class="owner-info">Owner: {{data.owner['id']}}</p>
+			<div class="sort">
+				<button type="button" class="button button-dark" id="sort-button" ng-click="sortPlaylist()">SORT</button>
+				
+				<!-- Dialog popup with sorted album art -->
+				<!-- <div id="fan-display" ng-repeat="track in tracks">
+					<img class="track-cover" src="{{track.track.album.images[0]['url']}}" alt="Playlist Cover Image" >
+					<br>
+					<div style="padding-top: 0.5em;">
+						<p class="track-caption title">{{track.track.name}}</p>
+						<p class="track-caption artist">{{track.track.artists[0].name}}</p>
+					</div>
+				</div> -->
+
+			</div>
+		</div>
+	</div>
+	<div class="tracklist-container">
+		<p class="tracklist-header">Tracks</p>
+		<div class="tracklist">
+			<div class="list scrollable">
+				<div class="track" id="track-div" ng-repeat="track in tracks">
+					<img class="track-cover" src="{{track.track.album.images[0]['url']}}" alt="Playlist Cover Image" crossorigin="*" id="{{track.track.id}}">
+					<br>
+					<div style="padding-top: 0.5em;">
+						<p class="track-caption title">{{track.track.name}}</p>
+						<p class="track-caption artist">{{track.track.artists[0].name}}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- 
+<script>
+$("#sort-button").hover(
+  function () {
+    $(this).next(".fan-display").slideToggle();
+  });
+$("#sort-button").active(
+  function () {
+  	console.log("TESTING");
+    $(this).next(".fan-display").slideToggle();
+  });
+</script>
+ -->
+
+<!-- Modal -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

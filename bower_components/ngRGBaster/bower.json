@@ -1,0 +1,23 @@
+{
+  "name": "ngRGBaster",
+  "version": "0.0.1",
+  "main": "./angular-rgbaster.js",
+  "authors": [
+    "Nomi Tari <nomitari@gmail.com>"
+  ],
+  "description": "RGBaster wrapper for AngularJS",
+  "keywords": [
+    "rgbaster",
+    "angular"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "rgbaster": "*"
+  }
+}
