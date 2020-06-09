@@ -7,6 +7,7 @@
 		$scope.profileUsername = Auth.getUsername();
 		$scope.displayName = Auth.getDisplayName();
 		$scope.playlists = [];
+		$scope.disPlaylists = [];
 
 		function updatePlaylists() {
 			if ($scope.profileUsername != '') {
@@ -23,6 +24,7 @@
 							};
 						/// }
 					});
+					$scope.disPlaylists = $scope.playlists;
 				});
 			}
 		}
@@ -45,13 +47,8 @@
 		$scope.query = '';
 
 		$scope.loadsearch = function() {
-			$scope.playlists = $filter('filter')($scope.playlists, $scope.query);
+			$scope.disPlaylists = $filter('filter')($scope.playlists, $scope.query);
 			console.log('search for', $scope.query);
-			/// var myParam = $location.search($scope.query);
-			/// console.log('var', myParam);
-			//$filter('filter')([], 'query');
-			/// console.log($location.path('/search'));
-			//$location.path('/search').search({ q: $scope.query }).replace();
 		};
 
 		$rootScope.$on('login', function() {

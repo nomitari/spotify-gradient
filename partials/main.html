@@ -13,7 +13,7 @@
     </div>
   </div>
   <div class="playlists">
-    <div class="pl-item" ng-repeat="pl in playlists track by pl.id | filter : query" ng-class="getClass('/users/{{pl.username}}/playlists/{{pl.id}}')" >
+    <div class="pl-item" ng-repeat="pl in disPlaylists track by pl.id | filter : query" ng-class="getClass('/users/{{pl.username}}/playlists/{{pl.id}}')" >
       <a ng-href="#/users/{{pl.username}}/playlists/{{pl.id}}">
         <img class="playlist-cover" ng-if="pl.image" src="{{pl.image['url']}}" alt="Playlist Cover Image" >
         <br>
