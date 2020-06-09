@@ -39,7 +39,7 @@
 					$location.replace();
 				}
 			}, function(err) {
-				$scope.showplayer = false;
+				$scope.showmain = false;
 				$scope.showlogin = true;
 				$location.replace();
 			});
@@ -55,17 +55,17 @@
   		}, false);
 
 		$scope.isLoggedIn = (Auth.getAccessToken() != '');
-		$scope.showplayer = $scope.isLoggedIn;
+		$scope.showmain = $scope.isLoggedIn;
 		$scope.showlogin = !$scope.isLoggedIn;
 
 		$scope.$on('login', function() {
-			$scope.showplayer = true;
+			$scope.showmain = true;
 			$scope.showlogin = false;
 			$location.path('/').replace().reload();
 		});
 
 		$scope.$on('logout', function() {
-			$scope.showplayer = false;
+			$scope.showmain = false;
 			$scope.showlogin = true;
 		});
 
