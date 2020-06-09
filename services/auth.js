@@ -9,8 +9,6 @@
 
 		if (location.host == 'localhost:8000') {
 			CLIENT_ID =	'7887b3adc6c34fae83c95722a5dae69e';
-			CLIENT_SECRET =	'0c37f44b0d8340f6910dd97b9d6da44b';
-			/// client secret not used anywhere - ???
 			REDIRECT_URI = 'http://localhost:8000/callback.html';
 		} else {
 			CLIENT_ID = '7887b3adc6c34fae83c95722a5dae69e';
