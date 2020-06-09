@@ -9,7 +9,7 @@
     "test",
     "tests"
   ],
-  "engine": "node >=0.6.x",
+  "engines": {"node": "10.16.3"},
   "scripts": {
     "start": "node server.js"
   },
