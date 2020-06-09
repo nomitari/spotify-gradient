@@ -18,6 +18,6 @@
     "@angular/fire": "^6.0.0",
     "angular-route": "~1.2.16",
     "firebase": "^7.15.0",
-    "ngColorThief": "angular-colorthief#^0.2.0"
+    "ngColorThief": "^0.2.0"
   }
 }
