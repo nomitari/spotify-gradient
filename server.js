@@ -1,6 +1,6 @@
 var express = require(‘express’);
 var app = express();
-app.use(express.static("PlayerApp")); // myApp will be the same folder name.
+app.use(express.static("GradientApp"));
 app.get(‘/’, function (req, res, next) {
  res.redirect(‘/’); 
 });
