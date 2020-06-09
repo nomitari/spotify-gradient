@@ -9,15 +9,18 @@
     "test",
     "tests"
   ],
-  "engines": {"node": "10.16.3"},
+  "engines": {
+    "node": "10.16.3"
+  },
   "scripts": {
     "start": "node server.js"
   },
   "main": "server.js",
   "dependencies": {
     "@angular/fire": "^6.0.0",
+    "angular-colorthief": "^0.1.1",
     "angular-route": "~1.2.16",
     "firebase": "^7.15.0",
-    "ngColorThief": "^0.2.0"
+    "angular-colorthief": "^0.2.0"
   }
 }
