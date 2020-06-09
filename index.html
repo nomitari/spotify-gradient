@@ -1,4 +1,4 @@
-<html ng-app="PlayerApp">
+<html ng-app="GradientApp">
 	<!--<script type="module" src="rgbaster/dist/rgbaster.js"></script>-->
 	<head>
 		<title>Spotify Gradient</title>
@@ -16,30 +16,14 @@
 		<script src="app.js"></script>
 		<script src="services/auth.js"></script>
 		<script src="services/api.js"></script>
-		<script src="services/playback.js"></script>
-		<script src="services/playqueue.js"></script>
-		<script src="directives/playlistcover.js"></script>
-		<script src="directives/responsivecover.js"></script>
-		<script src="directives/contextmenu.js"></script>
-		<script src="directives/focusme.js"></script>
-		<script src="filters/displaytime.js"></script>
-		<script src="filters/timeago.js"></script>
-		<script src="controllers/player.js"></script>
+		<script src="controllers/main.js"></script>
 		<script src="controllers/login.js"></script>
 		<script src="controllers/playlist.js"></script>
-		<script src="controllers/home.js"></script>
-		<script src="controllers/artist.js"></script>
-		<script src="controllers/album.js"></script>
 		<script src="controllers/user.js"></script>
-		<script src="controllers/usertracks.js"></script>
-		<script src="controllers/playqueue.js"></script>
-		<script src="controllers/searchresults.js"></script>
-		<script src="controllers/main.js"></script>
-		<script src="controllers/browsecategory.js"></script>
 	</head>
 	<body class="body" ng-controller="AppController">
 		<div class="centered" ng-show="showplayer">
-			<div ng-controller="PlayerController">
+			<div ng-controller="MainController">
 				<header class="header-group">
 					<div class="welcome">
 						<a href="#/home">Hi, {{displayName}}.</a>

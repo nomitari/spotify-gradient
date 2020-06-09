@@ -1,6 +1,6 @@
 (function() {
 
-	var app = angular.module('PlayerApp', ['ngRoute', 'ngColorThief']);
+	var app = angular.module('GradientApp', ['ngRoute', 'ngColorThief']);
 
 	app.config(function($routeProvider) {
 		$routeProvider.
@@ -8,37 +8,13 @@
 				templateUrl: 'partials/main.html',
 				controller: 'MainController'
 			}).
-			when('/playqueue', {
-				templateUrl: 'partials/playqueue.html',
-				controller: 'PlayQueueController'
-			}).
 			when('/users/:username', {
 				templateUrl: 'partials/user.html',
 				controller: 'UserController'
 			}).
-			when('/users/:username/tracks', {
-				templateUrl: 'partials/usertracks.html',
-				controller: 'UserTracksController'
-			}).
 			when('/users/:username/playlists/:playlist', {
 				templateUrl: 'partials/playlist.html',
 				controller: 'PlaylistController'
-			}).
-			when('/artists/:artist', {
-				templateUrl: 'partials/artist.html',
-				controller: 'ArtistController'
-			}).
-			when('/albums/:album', {
-				templateUrl: 'partials/album.html',
-				controller: 'AlbumController'
-			}).
-			when('/search', {
-				templateUrl: 'partials/searchresults.html',
-				controller: 'SearchResultsController'
-			}).
-			when('/category/:categoryid', {
-				templateUrl: 'partials/browsecategory.html',
-				controller: 'BrowseCategoryController'
 			}).
 			otherwise({
 				redirectTo: '/',
@@ -100,56 +76,7 @@
 				return '';
 			}
 		};
-
-		$scope.focusInput = false;
-		$scope.menuOptions = function(playlist) {
-
-			var visibilityEntry = [playlist.public ? 'Make secret' : 'Make public', function ($itemScope) {
-				API.changePlaylistDetails(playlist.username, playlist.id, {public: !playlist.public})
-					.then(function() {
-						playlist.public = !playlist.public;
-					});
-			}];
-
-			var own = playlist.username === Auth.getUsername();
-			if (own) {
-				return [
-					visibilityEntry,
-					null,
-					['Rename', function ($itemScope) {
-						playlist.editing = true;
-						$scope.focusInput = true;
-				}]
-				];
-			} else {
-				return [ visibilityEntry ];
-			}
-		};
-
-		$scope.playlistNameKeyUp = function(event, playlist) {
-			if (event.which === 13) {
-				// enter
-				var newName = event.target.value;
-				API.changePlaylistDetails(playlist.username, playlist.id, {name: newName})
-					.then(function() {
-						playlist.name = newName;
-						playlist.editing = false;
-						$scope.focusInput = false;
-					});
-			}
-
-			if (event.which === 27) {
-				// escape
-				playlist.editing = false;
-				$scope.focusInput = false;
-			}
-		};
-
-		$scope.playlistNameBlur = function(playlist) {
-			playlist.editing = false;
-			$scope.focusInput = false;
-		};
-
+		
 		checkUser();
 	});
 

@@ -1,6 +1,6 @@
 (function() {
 
-	var module = angular.module('PlayerApp');
+	var module = angular.module('GradientApp');
 
 	module.controller('LoginController', function($scope, Auth) {
 		$scope.isLoggedIn = false;

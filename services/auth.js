@@ -1,6 +1,6 @@
 (function() {
 
-	var module = angular.module('PlayerApp');
+	var module = angular.module('GradientApp');
 
 	module.factory('Auth', function() {
 
