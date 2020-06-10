@@ -17,10 +17,14 @@ const PORT = process.env.PORT || 3000;
 
 //app.enable('trust proxy');
 
+
+
 // in production on Heroku - re-route everything to https
 if (process.env.NODE_ENV==="production") {
   app.use((req, res, next) => {
-    if (req.header('x-forwarded-proto') !== 'https') {
+  	console.log("PRINTING HOSTNAME AND URL: ");
+  	console.log(req.hostname + req.url);
+    if (req.header('x-forwarded-proto') !== 'HTTPS') {
       res.redirect('https://' + req.hostname + req.url);
     } else {
       next()
