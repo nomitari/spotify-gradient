@@ -49,11 +49,8 @@
 
 
 
-
-
-
 const express = require('express');
-const secure = require('express-force-https');
+const secure = require('express-sslify');
 const app = express();
 app.use(secure);
 
