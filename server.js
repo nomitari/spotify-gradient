@@ -15,7 +15,7 @@ var app = express();
 // process.env.PORT gets the port for Heroku or goes to 3000
 const PORT = process.env.PORT || 3000;
 
-app.enable('trust proxy');
+//app.enable('trust proxy');
 
 // in production on Heroku - re-route everything to https
 if (process.env.NODE_ENV==="production") {
