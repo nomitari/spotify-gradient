@@ -161,8 +161,9 @@ img.user-img {
 }
 
 #display-name {
-	font-size: 150%;
+	font-size: 160%;
 	padding-bottom: 1em;
+	text-transform: uppercase;
 }
 
 .header-group {
