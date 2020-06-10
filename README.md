@@ -7,19 +7,25 @@ You will need spotify credentials to access this application.
 Spotify Gradient will sort your playlists by the dominant colors of their album artwork.
 
 Before sort:
-![](READMEimg/tracks-unsorted.png)
+![](READMEimg/tracks-unsorted.gif)
 
 After sort:
-![](READMEimg/tracks-sorted.png)
+![](READMEimg/tracks-sorted.gif)
 
 
 The main pages of this app are as follows:
 
+
 ![](READMEimg/login-view.png)
+
 ![](READMEimg/main-view.png)
+
 ![](READMEimg/user-view.png)
+
 ![](READMEimg/playlist-unsorted.png)
+
 ![](READMEimg/playlist-sort-verify.png)
+
 ![](READMEimg/playlist-sorted.png)
 
 
