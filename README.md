@@ -16,7 +16,8 @@ After sorting:
 
 
 
-The main pages of this app are as follows:
+This site allows you to view all of the playlists on your profile, each individual playlist and its tracks, and your own Spotify profile.
+
 
 
 ![](READMEimg/login-view.png)
