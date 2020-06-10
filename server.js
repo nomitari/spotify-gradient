@@ -23,9 +23,9 @@ const PORT = process.env.PORT || 3000;
 if (process.env.NODE_ENV==="production") {
   app.use((req, res, next) => {
   	console.log("PRINTING HOSTNAME AND URL: ");
-  	console.log(req.hostname + req.url + '/callback.html');
+  	console.log(req.hostname + req.url + 'callback.html');
     if (req.header('x-forwarded-proto') !== 'HTTPS') {
-      res.redirect('https://' + req.hostname + req.url + '/callback.html');
+      res.redirect('https://' + req.hostname + req.url + 'callback.html');
     } else {
       next()
     }
