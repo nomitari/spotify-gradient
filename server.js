@@ -30,8 +30,8 @@ if (process.env.NODE_ENV==="production") {
 
 app.use(express.static("spotify-gradient"));
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'spotify-gradient/index.html'));
+app.get('/', function (req, res) {
+ res.redirect('/'); 
 });
 
 app.listen(PORT, function() {
