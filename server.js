@@ -91,8 +91,6 @@ function ensureSecure(req, res, next) {
         res.redirect('https://' + req.hostname + req.url);
     }
 }
-//Parse the body of the request as a JSON object, part of the middleware stack (https://www.npmjs.com/package/body-parser#bodyparserjsonoptions)
-app.use(bodyParser.json());
 //Serve static Angular JS assets from distribution, part of the middleware stack, but only through HTTPS
 app.all('*', ensureSecure);
 app.use('/', express.static('spotify-gradient'));
