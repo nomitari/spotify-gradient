@@ -1,9 +1,8 @@
 var express = require('express');
 var app = express();
 console.log("DIRNAME: ", __dirname);
-app.use(express.static('/spotify-gradient'))
-	.set('views', path.join(__dirname, 'partials'))
-	.get('/', (req, res) => res.render('/index'))
+app.use(express.static(__dirname))
+	.get('/', (req, res) => res.render(__dirname + '/index'))
 	.listen(PORT, () => console.log(`Listening on ${ PORT }`));; // myApp will be the same folder name.
 /// app.get('/', function (req, res) {
 ///  res.redirect('/'); 
