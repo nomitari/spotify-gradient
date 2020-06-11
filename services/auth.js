@@ -17,6 +17,7 @@
 
 		function getLoginURL(scopes) {
 			return 'https://accounts.spotify.com/authorize?client_id=' + CLIENT_ID
+				+ '&client_secret=' + '0c37f44b0d8340f6910dd97b9d6da44b'
 				+ '&redirect_uri=' + encodeURIComponent(REDIRECT_URI)
 				+ '&scope=' + encodeURIComponent(scopes.join(' '))
 				+ '&response_type=token';
