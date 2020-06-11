@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 app.use(express.static(path.join(__dirname, 'public')))
-	.set('views', path.join(__dirname, 'partials'))]
+	.set('views', path.join(__dirname, 'partials'))
 	.get('/', (req, res) => res.render('/index'))
 	.listen(PORT, () => console.log(`Listening on ${ PORT }`));; // myApp will be the same folder name.
 /// app.get('/', function (req, res) {
