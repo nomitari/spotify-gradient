@@ -1,11 +1,11 @@
-/// var express = require('express');
-/// var app = express();
-/// app.use(express.static("spotify-gradient")); // myApp will be the same folder name.
-/// app.get('/', function (req, res) {
-///  res.redirect('/callback.html'); 
-/// });
-/// app.listen(process.env.PORT || 3000, 
-/// 	() => console.log("Server is running..."));
+var express = require('express');
+var app = express();
+app.use(express.static("spotify-gradient")); // myApp will be the same folder name.
+app.get('/', function (req, res) {
+ res.redirect('/'); 
+});
+app.listen(process.env.PORT || 3000, 
+	() => console.log("Server is running..."));
 
 
 
@@ -126,26 +126,26 @@
 
 
 
-var express = require('express');
-var app = express();
+/// var express = require('express');
+/// var app = express();
 
-function ensureSecure(req, res, next) {
-    //Heroku stores the origin protocol in a header variable. The app itself is isolated within the dyno and all request objects have an HTTP protocol.
-    if (req.get('X-Forwarded-Proto')=='https' || req.hostname == 'localhost') {
-        //Serve Angular App by passing control to the next middleware
-        next();
-    } else if(req.get('X-Forwarded-Proto')!='https' && req.get('X-Forwarded-Port')!='443'){
-        //Redirect if not HTTP with original request URL
-        res.redirect('https://' + req.hostname + req.url);
-    }
-}
-//Serve static Angular JS assets from distribution, part of the middleware stack, but only through HTTPS
-app.all('*', ensureSecure);
-app.use('/', express.static(__dirname + 'spotify-gradient'));
-//Setup port for access
-app.listen(process.env.PORT || 3000, function () {
-    console.log(`The server is running on port ${process.env.PORT || 3000}!`);
-});
+/// function ensureSecure(req, res, next) {
+///     //Heroku stores the origin protocol in a header variable. The app itself is isolated within the dyno and all request objects have an HTTP protocol.
+///     if (req.get('X-Forwarded-Proto')=='https' || req.hostname == 'localhost') {
+///         //Serve Angular App by passing control to the next middleware
+///         next();
+///     } else if(req.get('X-Forwarded-Proto')!='https' && req.get('X-Forwarded-Port')!='443'){
+///         //Redirect if not HTTP with original request URL
+///         res.redirect('https://' + req.hostname + req.url);
+///     }
+/// }
+/// //Serve static Angular JS assets from distribution, part of the middleware stack, but only through HTTPS
+/// app.all('*', ensureSecure);
+/// app.use('/', express.static(__dirname + 'spotify-gradient'));
+/// //Setup port for access
+/// app.listen(process.env.PORT || 3000, function () {
+///     console.log(`The server is running on port ${process.env.PORT || 3000}!`);
+/// });
 
 
 
