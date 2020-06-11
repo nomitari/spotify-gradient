@@ -78,6 +78,8 @@
 
 
 
+var express = require('express');
+var app = express();
 
 function ensureSecure(req, res, next) {
     //Heroku stores the origin protocol in a header variable. The app itself is isolated within the dyno and all request objects have an HTTP protocol.
