@@ -43,22 +43,22 @@
 
 
 
-var express = require('express');
-var app = express();
-const PORT = process.env.PORT || 3000;
+/// var express = require('express');
+/// var app = express();
+/// const PORT = process.env.PORT || 3000;
 
- var forceSsl = function (req, res, next) {
-    if (req.headers['x-forwarded-proto'] !== 'https') {
-        return res.redirect(['https://', req.get('Host'), req.url].join(''));
-    }
-    return next();
- };
+///  var forceSsl = function (req, res, next) {
+///     if (req.headers['x-forwarded-proto'] !== 'https') {
+///         return res.redirect(['https://', req.get('Host'), req.url].join(''));
+///     }
+///     return next();
+///  };
 
-app.use(forceSsl);
+/// app.use(forceSsl);
 
-app.listen(PORT, function() {
-  console.log('Express server is up on port:' + PORT);
-});
+/// app.listen(PORT, function() {
+///   console.log('Express server is up on port:' + PORT);
+/// });
 
 
 /// app.listen(PORT, function() {
@@ -79,27 +79,27 @@ app.listen(PORT, function() {
 
 
 
-/// function ensureSecure(req, res, next) {
-///     //Heroku stores the origin protocol in a header variable. The app itself is isolated within the dyno and all request objects have an HTTP protocol.
-///     if (req.get('X-Forwarded-Proto')=='https' || req.hostname == 'localhost') {
-///         //Serve Angular App by passing control to the next middleware
-///         next();
-///     } else if(req.get('X-Forwarded-Proto')!='https' && req.get('X-Forwarded-Port')!='443'){
-///         //Redirect if not HTTP with original request URL
-///         res.redirect('https://' + req.hostname + req.url);
-///     }
-/// }
-/// //Parse the body of the request as a JSON object, part of the middleware stack (https://www.npmjs.com/package/body-parser#bodyparserjsonoptions)
-/// app.use(bodyParser.json());
-/// //Serve static Angular JS assets from distribution, part of the middleware stack, but only through HTTPS
-/// app.all('*', ensureSecure);
-/// app.use('/', express.static('dist'));
-/// //Import routes
-/// app.use('/api', [router_getToken, router_invokeBhApi]);
-/// //Setup port for access
-/// app.listen(process.env.PORT || 3000, function () {
-///     console.log(`The server is running on port ${process.env.PORT || 3000}!`);
-/// });
+function ensureSecure(req, res, next) {
+    //Heroku stores the origin protocol in a header variable. The app itself is isolated within the dyno and all request objects have an HTTP protocol.
+    if (req.get('X-Forwarded-Proto')=='https' || req.hostname == 'localhost') {
+        //Serve Angular App by passing control to the next middleware
+        next();
+    } else if(req.get('X-Forwarded-Proto')!='https' && req.get('X-Forwarded-Port')!='443'){
+        //Redirect if not HTTP with original request URL
+        res.redirect('https://' + req.hostname + req.url);
+    }
+}
+//Parse the body of the request as a JSON object, part of the middleware stack (https://www.npmjs.com/package/body-parser#bodyparserjsonoptions)
+app.use(bodyParser.json());
+//Serve static Angular JS assets from distribution, part of the middleware stack, but only through HTTPS
+app.all('*', ensureSecure);
+app.use('/', express.static('spotify-gradient'));
+//Import routes
+app.use('/api', [router_getToken, router_invokeBhApi]);
+//Setup port for access
+app.listen(process.env.PORT || 3000, function () {
+    console.log(`The server is running on port ${process.env.PORT || 3000}!`);
+});
 
 
 
