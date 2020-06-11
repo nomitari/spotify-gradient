@@ -94,8 +94,6 @@ function ensureSecure(req, res, next) {
 //Serve static Angular JS assets from distribution, part of the middleware stack, but only through HTTPS
 app.all('*', ensureSecure);
 app.use('/', express.static('spotify-gradient'));
-//Import routes
-app.use('/api', [router_getToken, router_invokeBhApi]);
 //Setup port for access
 app.listen(process.env.PORT || 3000, function () {
     console.log(`The server is running on port ${process.env.PORT || 3000}!`);
