@@ -13,8 +13,7 @@
     "node": "10.16.3"
   },
   "scripts": {
-    "start": "node server.js",
-    "heroku-postbuild": "npm install --prefix client && npm run build --prefix client"
+    "start": "node server.js"
   },
   "main": "server.js",
   "dependencies": {
