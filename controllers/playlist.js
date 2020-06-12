@@ -26,97 +26,101 @@
 					$scope.user = list.id;
 
 					if ($scope.username == $scope.user) {
-						console.log('sorting playlist tracks');
+						var verify = confirm("Are you sure? This action cannot be reversed.");
+						if (verify) {
+							console.log('sorting playlist tracks');
 
-						var images = $document[0].getElementsByClassName('track-cover');
-						var sorted = [];
+							var images = $document[0].getElementsByClassName('track-cover');
+							var sorted = [];
 
-						// source: https://stackoverflow.com/questions/8022885/rgb-to-hsv-color-in-javascript
-						function rgb2hsv (r, g, b) {
-							let rabs, gabs, babs, rr, gg, bb, h, s, v, diff, diffc, percentRoundFn;
-							rabs = r / 255;
-							gabs = g / 255;
-							babs = b / 255;
-							v = Math.max(rabs, gabs, babs),
-							diff = v - Math.min(rabs, gabs, babs);
-							diffc = c => (v - c) / 6 / diff + 1 / 2;
-							percentRoundFn = num => Math.round(num * 100) / 100;
-							if (diff == 0) {
-								h = s = 0;
-							} else {
-								s = diff / v;
-								rr = diffc(rabs);
-								gg = diffc(gabs);
-								bb = diffc(babs);
+							// source: https://stackoverflow.com/questions/8022885/rgb-to-hsv-color-in-javascript
+							function rgb2hsv (r, g, b) {
+								let rabs, gabs, babs, rr, gg, bb, h, s, v, diff, diffc, percentRoundFn;
+								rabs = r / 255;
+								gabs = g / 255;
+								babs = b / 255;
+								v = Math.max(rabs, gabs, babs),
+								diff = v - Math.min(rabs, gabs, babs);
+								diffc = c => (v - c) / 6 / diff + 1 / 2;
+								percentRoundFn = num => Math.round(num * 100) / 100;
+								if (diff == 0) {
+									h = s = 0;
+								} else {
+									s = diff / v;
+									rr = diffc(rabs);
+									gg = diffc(gabs);
+									bb = diffc(babs);
 
-								if (rabs === v) {
-									h = bb - gg;
-								} else if (gabs === v) {
-									h = (1 / 3) + rr - bb;
-								} else if (babs === v) {
-									h = (2 / 3) + gg - rr;
+									if (rabs === v) {
+										h = bb - gg;
+									} else if (gabs === v) {
+										h = (1 / 3) + rr - bb;
+									} else if (babs === v) {
+										h = (2 / 3) + gg - rr;
+									}
+									if (h < 0) {
+										h += 1;
+									}else if (h > 1) {
+										h -= 1;
+									}
 								}
-								if (h < 0) {
-									h += 1;
-								}else if (h > 1) {
-									h -= 1;
+								return {
+									h: Math.round(h * 360),
+									s: percentRoundFn(s * 100),
+									v: percentRoundFn(v * 100)
+								};
+							}
+
+							// getPlaylistColors - get color for all tracks in playlist
+							for (var i = 0; i < images.length; i++) {
+								var color, hsv = null;
+								images[i].onload = function() {
+									color = $colorThief.getColor(images[i]);
+									hsv = rgb2hsv(color[0], color[1], color[2]);
+									console.log('color: ', color);
+									console.log("HSV: ", hsv);
+
+									var image = images[i].id;
+									sorted.push([image, hsv]);
+
+								}();
+							}
+
+							// remove all elements within certain b&w threshold
+							// this is for visual continuity in final playlist
+							var bw = [];
+							var colored = [];
+							for (var i = 0; i < sorted.length; i++) {
+								if (sorted[i][1]['v'] <= 8 || sorted[i][1]['s'] <= 20) {
+									bw.push(sorted[i]);
+								}
+								else {
+									colored.push(sorted[i]);
 								}
 							}
-							return {
-								h: Math.round(h * 360),
-								s: percentRoundFn(s * 100),
-								v: percentRoundFn(v * 100)
-							};
-						}
 
-						// getPlaylistColors - get color for all tracks in playlist
-						for (var i = 0; i < images.length; i++) {
-							var color, hsv = null;
-							images[i].onload = function() {
-								color = $colorThief.getColor(images[i]);
-								hsv = rgb2hsv(color[0], color[1], color[2]);
-								console.log('color: ', color);
-								console.log("HSV: ", hsv);
+							// sort arrays [ [imageID, {h,s,v}] ]
+							colored = colored.sort(function(a,b) {
+								return a[1]['h'] - b[1]['h'] || a[1]['v'] - b[1]['v'];
+							});
 
-								var image = images[i].id;
-								sorted.push([image, hsv]);
+							bw = bw.sort(function(a,b) {
+								return a[1]['v'] - b[1]['v'] || a[1]['h'] - b[1]['h'];
+							});
 
-							}();
-						}
+							var finalTracklist = colored.concat(bw);
+							var URIs = []; 
 
-						// remove all elements within certain b&w threshold
-						// this is for visual continuity in final playlist
-						var bw = [];
-						var colored = [];
-						for (var i = 0; i < sorted.length; i++) {
-							if (sorted[i][1]['v'] <= 25 || sorted[i][1]['s'] <= 15) {
-								bw.push(sorted[i]);
+							for (var i in finalTracklist) {
+								URIs.push(`spotify:track:${finalTracklist[i][0]}`);
 							}
-							else {
-								colored.push(sorted[i]);
-							}
+
+							API.sortPlaylistTracks($scope.username, $scope.playlist, URIs).then(function(list) {
+								window.location.reload(false); 
+								$rootScope.$emit('playlistsorderchange');
+							});
 						}
-
-						// sort arrays [ [imageID, {h,s,v}] ]
-						colored = colored.sort(function(a,b) {
-							return a[1]['h'] - b[1]['h'] || a[1]['v'] - b[1]['v'];
-						});
-
-						bw = bw.sort(function(a,b) {
-							return a[1]['v'] - b[1]['v'] || a[1]['h'] - b[1]['h'];
-						});
-
-						var finalTracklist = colored.concat(bw);
-						var URIs = []; 
-
-						for (var i in finalTracklist) {
-							URIs.push(`spotify:track:${finalTracklist[i][0]}`);
-						}
-
-						API.sortPlaylistTracks($scope.username, $scope.playlist, URIs).then(function(list) {
-							window.location.reload(false); 
-							$rootScope.$emit('playlistsorderchange');
-						});
+						
 					}
 					else {
 						// not owner of playlist

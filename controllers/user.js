@@ -6,15 +6,13 @@
 		$scope.profileUsername = $routeParams.username;
 		$scope.data = null;
 		$scope.playlistError = null;
-		$scope.isFollowing = false;
-		$scope.isFollowHovered = false;
+		$scope.imagesrc = "../images/default-user.svg";
 
 		API.getUser($scope.profileUsername).then(function(user) {
 			console.log('got user', user);
 			$scope.data = user;
-			$scope.imagesrc = "../images/default-user.svg";
 			if ($scope.data.images.length) {
-				$scope.imagesrc = $scope.data.images[0].src;
+				$scope.imagesrc = $scope.data.images[0]['url'];
 			}
 		});
 

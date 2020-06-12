@@ -13,7 +13,8 @@
     "node": "10.16.3"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "heroku-postbuild": "npm install --prefix client && npm run build --prefix client"
   },
   "main": "server.js",
   "dependencies": {
@@ -21,6 +22,8 @@
     "angular-colorthief": "^0.1.1",
     "angular-route": "~1.2.16",
     "express": "^4.17.1",
+    "express-force-https": "^1.0.0",
+    "express-sslify": "^1.2.0",
     "firebase": "^7.15.0"
   }
 }
