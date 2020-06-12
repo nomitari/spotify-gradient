@@ -4,6 +4,11 @@ Spotify Gradient
 This is a web app that uses the Spotify API to sort playlists by their tracks' album artwork. 
 You will need spotify credentials to access this application. 
 
+
+**ACCESS THIS APP HERE**: https://spotify-gradient.herokuapp.com/
+
+================
+
 Spotify Gradient will sort your playlists by the dominant colors of their album artwork.
 
 Before sorting:
