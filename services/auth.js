@@ -12,7 +12,7 @@
 			REDIRECT_URI = 'http://localhost:8000/callback.html';
 		} else {
 			CLIENT_ID = '7887b3adc6c34fae83c95722a5dae69e';
-			REDIRECT_URI = 'https://spotify-gradient.vercel.app/';
+			REDIRECT_URI = 'https://spotify-gradient.vercel.app/callback.html';
 		}
 
 		function getLoginURL(scopes) {
