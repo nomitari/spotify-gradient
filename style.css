@@ -266,6 +266,7 @@ a:hover {
 }
 
 #main-title {
+	text-align: left;
 	font-weight: 600;
 	letter-spacing: 1px;
 }
