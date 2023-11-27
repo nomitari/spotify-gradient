@@ -247,7 +247,7 @@ a:hover {
 /* style icon */
 .inner-addon .fa {
   position: absolute;
-  padding: 10px;
+  padding: 1em 0px 8px 8px;
   pointer-events: none;
   color: #000;
   -webkit-text-stroke: 1px #FFF;
@@ -261,7 +261,7 @@ a:hover {
 
 /* add padding  */
 .left-addon input  { 
-	padding-left:  25px; 
+	padding-left:  2em; 
 	margin-left: -7%;
 }
 
@@ -627,6 +627,7 @@ p.tracklist-header {
 	}
 	#main-title {
 		margin-bottom: 0;
+		text-align: left;
 	}
 	.searchbox div {
 		margin-left: 5%;
